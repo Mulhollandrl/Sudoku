@@ -1,6 +1,8 @@
 import sys
 import pygame
 from pygame.locals import *
+from game.components.board import Board
+from enums.COLORS import *
 
 FPS = 60
 SCREENHEIGHT = 600
@@ -10,8 +12,7 @@ class Game():
     def __init__(self) -> None:
         self.SCREENWIDTH = SCREENWIDTH
         self.SCREENHEIGHT = SCREENHEIGHT
-        #TODO: fix the board
-        self.board = None
+        self.board = Board(self.SCREENHEIGHT)
         self.cells_to_update = []
         self.selected_cell = 0
         self.game_over = False
@@ -21,7 +22,7 @@ class Game():
         pygame.init()
         pygame.display.set_caption("Sudoku")
 
-        self.DISPLAYSURF = pygame.display.set_mode((self.SCREENHEIGHT, self.SCREENWIDTH))
+        self.DISPLAYSURF = pygame.display.set_mode((self.SCREENWIDTH, self.SCREENHEIGHT))
         self.FPS = pygame.time.Clock()
 
         self.FPS.tick(FPS)
@@ -49,7 +50,9 @@ class Game():
         pass
 
     def render(self):
-        pass
+        self.DISPLAYSURF.fill(BROWN)
+        self.board.render(self.DISPLAYSURF, self.show_errors)
+        pygame.display.update()
 
     def game_loop(self):
         self.process_input()

@@ -3,10 +3,11 @@ from enums.CORNERS import *
 from enums.COLORS import *
 
 class Cell:
-    def __init__(self, corners, number) -> None:
+    def __init__(self, dimensions, corners) -> None:
         self.corners = corners
         self.selected = False
-        self.correct_number = number
+        #TODO: Implement logic to find a correct and solvable number
+        self.correct_number = 0
         self.current_number = 0
         self.guessed = False
         self.background_color = BEIGE
@@ -29,7 +30,19 @@ class Cell:
             self.background_color = BEIGE
 
         pygame.draw.rect(surface, self.background_color,
-                         pygame.Rect(self.corners[CORNERS["left"]], self.corners["up"], offset, offset))
+                         pygame.Rect(self.corners[CORNERS["left"]], self.corners[CORNERS["up"]], offset, offset))
+        pygame.draw.line(surface, BROWN, 
+                         (self.corners[CORNERS["left"]], self.corners[CORNERS["up"]]),
+                         (self.corners[CORNERS["left"]], self.corners[CORNERS["down"]]))
+        pygame.draw.line(surface, BROWN, 
+                         (self.corners[CORNERS["left"]], self.corners[CORNERS["up"]]),
+                         (self.corners[CORNERS["right"]], self.corners[CORNERS["up"]]))
+        pygame.draw.line(surface, BROWN, 
+                         (self.corners[CORNERS["right"]], self.corners[CORNERS["up"]]),
+                         (self.corners[CORNERS["right"]], self.corners[CORNERS["down"]]))
+        pygame.draw.line(surface, BROWN, 
+                         (self.corners[CORNERS["left"]], self.corners[CORNERS["down"]]),
+                         (self.corners[CORNERS["right"]], self.corners[CORNERS["down"]]))
         
         if self.guessed:
             text = font.render(self.current_number, True, BROWN)

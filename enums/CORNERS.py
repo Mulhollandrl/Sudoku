@@ -1,6 +1,6 @@
 CORNERS = {
     "left": 0,
-    "right": 1,
-    "up": 2,
+    "up": 1,
+    "right": 2,
     "down": 3
 }
