@@ -3,6 +3,7 @@ import pygame
 from pygame.locals import *
 from game.components.board import Board
 from enums.COLORS import *
+from enums.KEYBINDINGS import *
 
 FPS = 60
 SCREENHEIGHT = 600
@@ -47,7 +48,8 @@ class Game():
                     self.process_mouse(pos)
 
     def update(self):
-        pass
+        self.board.update(self.cells_to_update, self.selected_cell)
+        self.cells_to_update = []
 
     def render(self):
         self.DISPLAYSURF.fill(BROWN)
@@ -60,7 +62,36 @@ class Game():
         self.render()
 
     def process_key(self, key):
-        pass
+        if key in KEYBINDINGS.keys():
+            if key in NUMBERS_CONTROLS:
+                self.cells_to_update.append((self.selected_cell, KEYBINDINGS[key]))
+
+            if key in MOVEMENT_CONTROLS:
+                if KEYBINDINGS[key] == "Move Left" or KEYBINDINGS[key] == "Move Left Alt":
+                    if self.selected_cell > 0:
+                        self.selected_cell -= 1
+                    else:
+                        self.selected_cell = 80
+
+                if KEYBINDINGS[key] == "Move Right" or KEYBINDINGS[key] == "Move Right Alt":
+                    if self.selected_cell < 80:
+                        self.selected_cell += 1
+                    else:
+                        self.selected_cell = 0
+
+                if KEYBINDINGS[key] == "Move Down" or KEYBINDINGS[key] == "Move Down Alt":
+                    if self.selected_cell < 72:
+                        self.selected_cell += 9
+                    else:
+                        self.selected_cell = 8 - (self.selected_cell % 9)
+
+                if KEYBINDINGS[key] == "Move Up" or KEYBINDINGS[key] == "Move Up Alt":
+                    if self.selected_cell > 8:
+                        self.selected_cell -= 9
+                    else:
+                        self.selected_cell = 80 - (9 - self.selected_cell)
+        else:
+            return 0
 
     def process_mouse(self, mouse_position):
         pass

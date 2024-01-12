@@ -12,16 +12,23 @@ class Board:
         for i in range(BOARDSIZE*BOARDSIZE):
             x_index = i % BOARDSIZE
             y_index = i // BOARDSIZE
+            right_edge = False
+            bottom_edge = False
+
+            if i % 9 == 2 or i % 9 == 5:
+                right_edge = True
+
+            if (i + 9) % 27 < 9:
+                bottom_edge = True
+
             self.cells.append(Cell(self.SCREENSIZE//BOARDSIZE, 
                                    (x_index * self.OFFSET, y_index * self.OFFSET, 
-                                    (x_index + 1) * self.OFFSET, (y_index + 1) * self.OFFSET)))
+                                    (x_index + 1) * self.OFFSET, (y_index + 1) * self.OFFSET), 
+                                    right_edge, bottom_edge))
             
-        for cell in self.cells:
-            print(cell.corners)
-
     def update(self, cells_to_update, selected_cell):
-        for cell, number in cells_to_update["number"]:
-            cell.update_number(number)
+        for cell, number in cells_to_update:
+            self.cells[cell].update_number(number)
 
         for index, cell in enumerate(self.cells):
             if index == selected_cell:

@@ -12,7 +12,6 @@ KEYBINDINGS = {
     pygame.K_s: "Move Down Alt",
     pygame.K_UP: "Move Up",
     pygame.K_w: "Move Up Alt",
-    pygame.K_0: "0",
     pygame.K_1: "1",
     pygame.K_2: "2",
     pygame.K_3: "3",
@@ -36,7 +35,6 @@ KEYBINDINGS_REVERSED = {
     "Move Down Alt": pygame.K_s,
     "Move Up": pygame.K_UP,
     "Move Up Alt": pygame.K_w,
-    "0": pygame.K_0,
     "1": pygame.K_1,
     "2": pygame.K_2,
     "3": pygame.K_3,
@@ -47,3 +45,12 @@ KEYBINDINGS_REVERSED = {
     "8": pygame.K_8,
     "9": pygame.K_9
 }
+
+NUMBERS_CONTROLS = [KEYBINDINGS_REVERSED["1"], KEYBINDINGS_REVERSED["2"], KEYBINDINGS_REVERSED["3"], 
+                    KEYBINDINGS_REVERSED["4"], KEYBINDINGS_REVERSED["5"], KEYBINDINGS_REVERSED["6"], 
+                    KEYBINDINGS_REVERSED["7"], KEYBINDINGS_REVERSED["8"], KEYBINDINGS_REVERSED["9"]]
+
+MOVEMENT_CONTROLS = [KEYBINDINGS_REVERSED["Move Left"], KEYBINDINGS_REVERSED["Move Left Alt"],
+                     KEYBINDINGS_REVERSED["Move Right"], KEYBINDINGS_REVERSED["Move Right Alt"],
+                     KEYBINDINGS_REVERSED["Move Down"], KEYBINDINGS_REVERSED["Move Down Alt"],
+                     KEYBINDINGS_REVERSED["Move Up"], KEYBINDINGS_REVERSED["Move Up Alt"],]
