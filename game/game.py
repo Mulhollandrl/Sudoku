@@ -66,7 +66,7 @@ class Game():
             if key in NUMBERS_CONTROLS:
                 self.cells_to_update.append((self.selected_cell, KEYBINDINGS[key]))
 
-            if key in MOVEMENT_CONTROLS:
+            elif key in MOVEMENT_CONTROLS:
                 if KEYBINDINGS[key] == "Move Left" or KEYBINDINGS[key] == "Move Left Alt":
                     if self.selected_cell > 0:
                         self.selected_cell -= 1
@@ -90,6 +90,19 @@ class Game():
                         self.selected_cell -= 9
                     else:
                         self.selected_cell = 80 - (9 - self.selected_cell)
+
+            else:
+                if KEYBINDINGS[key] == "Menu":
+                    #TODO: Finish Menu
+                    pass
+                
+                if KEYBINDINGS[key] == "Show Errors":
+                    self.show_errors = not self.show_errors
+
+                if KEYBINDINGS[key] == "Solve":
+                    #TODO: Implement Solving Logic
+                    pass
+
         else:
             return 0
 

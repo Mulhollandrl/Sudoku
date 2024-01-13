@@ -1,7 +1,13 @@
-from game.game import Game
+from menuing.game_screen import Game_Screen
+from enums.MENUS import MENUS
 
 if __name__ == "__main__":
-    game = Game()
+    current_screen = MENUS["Game"]
+    game_screen = Game_Screen()
 
     while True:
-        game.game_loop()
+        if current_screen == MENUS["Game"]:
+            game_screen.active = True
+
+        if game_screen.active:
+            game_screen.game_loop()
